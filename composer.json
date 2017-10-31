@@ -1,0 +1,14 @@
+{
+	"name": "roundhouse/variantshippingcategory",
+	"description": "Assign a shipping category to a product variant",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Roundhouse Agency",
+			"homepage": "http://roundhouseagency.com"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
