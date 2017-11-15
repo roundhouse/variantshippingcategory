@@ -22,6 +22,7 @@
  */
 
 namespace Craft;
+require_once('Adjusters/Variant_ShippingAdjuster.php');
 
 class VariantShippingCategoryPlugin extends BasePlugin
 {
@@ -186,6 +187,7 @@ class VariantShippingCategoryPlugin extends BasePlugin
     {
       $lineItem = $event->params['lineItem'];
       $purchasable = $lineItem->purchasable;
+      $shippingCategoryId = null;
       foreach ($purchasable->getFieldLayout()->fields as $field) {
         if ($field->getField()->type == "VariantShippingCategory_ShippingCategory") {
           $handle = $field->getField()->handle;
@@ -197,4 +199,15 @@ class VariantShippingCategoryPlugin extends BasePlugin
         $lineItem->setAttribute('shippingCategoryId', $shippingCategoryId);
       }
     }
+	
+    /**
+     * Used to register the Variant Shipping Adjuster to the application
+     * has been deleted.
+     */
+	public function commerce_registerOrderAdjusters(){
+	  return [
+	    200 => new \Commerce\Adjusters\Variant_ShippingAdjuster
+	  ];
+	}
+	
 }
